@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="projectservice" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="LovType" EntityType="projectservice.LovType">
+                    <NavigationPropertyBinding Path="LovValue" Target="LovValue"/>
+                </EntitySet>
+                <EntitySet Name="LovValue" EntityType="projectservice.LovValue">
+                    <NavigationPropertyBinding Path="LovType" Target="LovValue"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="LovType">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Active" Type="Edm.Boolean"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="100"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="100"/>
+                <NavigationProperty Name="LovValue" Type="Collection(projectservice.LovValue)"/>
+            </EntityType>
+            <EntityType Name="LovValue">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Isocode" Type="Edm.String" MaxLength="100"/>
+                <Property Name="Active" Type="Edm.Boolean"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="100"/>
+                <Property Name="SystemId" Type="Edm.Int32"/>
+                <Property Name="Datatype" Type="Edm.String" MaxLength="100"/>
+                <NavigationProperty Name="LovType" Type="projectservice.LovValue">
+                    <ReferentialConstraint Property="LovType_Id" ReferencedProperty="Id"/>
+                </NavigationProperty>
+                <Property Name="LovType_Id" Type="Edm.Guid"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,213 @@
+<mvc:View controllerName="lovdatafioriapp.controller.master"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter key="info" text="LOV Type">
+                        <HBox visible="true">
+                            <VBox >
+                                <Label text="Name"/>
+                                <ComboBox items="{path: 'mainModel>/LovType'}">
+                                    <core:Item key="{mainModel>Id}" text="{mainModel>Name}" />
+                                </ComboBox>
+                            </VBox>
+                            <VBox >
+                                <Label text="Active"/>
+                                
+                            </VBox>
+                            <VBox >
+                                <Label text="Id"></Label>
+                                <Input value=""></Input>
+                            </VBox>
+                            <VBox >
+                                <Label text="Description"></Label>
+                                <Input value=""></Input>
+                            </VBox>
+                            <VBox >
+                                <Label text="Category"/>
+                                
+                            </VBox>
+                        </HBox>
+                        <Table items="{mainModel>/LovType}" id="table0" mode="SingleSelectLeft" selectionChange="onSelect">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <ToolbarSpacer />
+                                        <SearchField id="searchField" width="20%" placeholder="search" search=".onSearch" />
+                                        <Button id="createButton" icon="sap-icon://add" tooltip="Create" visible="true" press="onOpenAddDialog">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData priority="NeverOverflow" />
+                                            </layoutData>
+                                        </Button>
+                                        <Button id="deleteButton" icon="sap-icon://delete" tooltip="Delete" visible="false" press="onDelete">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData priority="NeverOverflow" />
+                                            </layoutData>
+                                        </Button>
+                                        <Button id="saveButton" text="Save" type="Emphasized" visible="false" enabled="true" press="onSave" />
+                                        <Button id="editModeButton" visible="true" icon="sap-icon://edit" tooltip="Edit" press="onEditMode">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData priority="NeverOverflow" />
+                                            </layoutData>
+                                        </Button>
+                                    </content>
+                                    <dependents>
+                                        <Dialog id="OpenDialog" title="Lov Type">
+                                            <buttons>
+                                                <Button id="confirmCreate" text="Create" press=".onCreate" type="Emphasized" />
+                                                <Button id="cancelCreate" text="Cancel" press="onCancelDialog" type="Transparent" />
+                                            </buttons>
+                                            <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                                                <f:content>
+                                                    <Label text="Name" />
+                                                    <ComboBox items="{					                                       path: 'mainModel>/LovType'									                                      }">
+                                                        <core:Item key="{mainModel>Id}" text="{mainModel>Name}" />
+                                                    </ComboBox>
+                                                    <Label text="Active" />
+                                                    <Switch type="AcceptReject" state="{/Enabled}"/>
+                                                    <Label text="Description" />
+                                                    <Input id="iddescription" />
+                                                    <Label text="Category"/>
+                                                    <Input id="idcategory"></Input>
+                                                </f:content>
+                                            </f:SimpleForm>
+                                        </Dialog>
+                                    </dependents>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <items>
+                                <ColumnListItem type="Active" id="item0">
+                                    <cells>
+                                        <Text id="id1" text="{mainModel>Id}"/>
+                                        <Text id="id2" text="{mainModel>Name}"/>
+                                        <Text id="id3" text="{mainModel>Active}"/>
+                                        <Text id="id4" text="{mainModel>Description}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <columns>
+                                <Column>
+                                    <header>
+                                        <Label text="Id" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Name" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Active" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Description" />
+                                    </header>
+                                </Column>
+                            </columns>
+                        </Table>
+                    </IconTabFilter>
+                    <IconTabFilter key="info" text="LOV Value">
+                        <Table items="{mainModel>/LovValue}" id="table1" mode="SingleSelectLeft" selectionChange="onSelect">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <ToolbarSpacer />
+                                        <SearchField width="20%" placeholder="search" search=".onSearch" />
+                                        <Button icon="sap-icon://add" tooltip="Create" visible="true" press="onOpenAddDialog1">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData priority="NeverOverflow" />
+                                            </layoutData>
+                                        </Button>
+                                        <Button id="deleteButton1" icon="sap-icon://delete" tooltip="Delete" visible="false" press="onDelete1">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData priority="NeverOverflow" />
+                                            </layoutData>
+                                        </Button>
+                                        <Button id="saveButton1" text="Save" type="Emphasized" visible="false" enabled="true" press="onSave1" />
+                                        <Button id="editModeButton1" visible="true" icon="sap-icon://edit" tooltip="Edit" press="onEditMode1">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData priority="NeverOverflow" />
+                                            </layoutData>
+                                        </Button>
+                                    </content>
+                                    <dependents>
+                                        <Dialog id="OpenDialog1" title="Lov Value">
+                                            <buttons>
+                                                <Button text="Create" press=".onCreate1" type="Emphasized" />
+                                                <Button text="Cancel" press="onCancelDialog1" type="Transparent" />
+                                            </buttons>
+                                            <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                                                <f:content>
+                                                    <Label text="Isocode" />
+                                                    <Input id="idIsocode" />
+                                                    <Label text="LovType" />
+                                                    <ComboBox items="{path: 'mainModel>/LovType'}">
+                                                        <core:Item  id="idname" key="{mainModel>Id}" text="{mainModel>Name}" />
+                                                    </ComboBox>
+                                                    <Label text="Active" />
+                                                    <Switch id="idActive1" type="AcceptReject" state="{/Enabled}"/>
+                                                    <Label text="Description" />
+                                                    <Input id="iddescription1" />
+                                                    <Label text="SystemId" />
+                                                    <Input id="idSystemId" value="0" />
+                                                    <Label text="DataType" />
+                                                    <Input id="idDataType" />
+                                                </f:content>
+                                            </f:SimpleForm>
+                                        </Dialog>
+                                    </dependents>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <items>
+                                <ColumnListItem type="Active">
+                                    <cells>
+                                        <Text text="{mainModel>Id}"/>
+                                        <Text text="{mainModel>Isocode}"/>
+                                        <Text text="{mainModel>LovType}"/>
+                                        <Text text="{mainModel>Active}"/>
+                                        <Text text="{mainModel>Description}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <columns>
+                                <Column>
+                                    <header>
+                                        <Label text="Id" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Isocode" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="LovType" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Active" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Description" />
+                                    </header>
+                                </Column>
+                            </columns>
+                        </Table>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>
